@@ -1,5 +1,7 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import { Navigation } from '../src/Components';
+import { SearchBar } from '../src/Components/SearchBar';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Navigation />
+      <SearchBar />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -61,5 +65,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
