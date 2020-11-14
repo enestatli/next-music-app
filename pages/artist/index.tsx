@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { AlbumList, Navigation } from '../../src/Components';
+import { Footer } from '../../src/Components/Footer';
 import { SearchBar } from '../../src/Components/SearchBar';
+import { SongList } from '../../src/Components/SongList';
 import styles from '../../styles/Home.module.css';
 
 export default function Artist() {
@@ -13,6 +15,8 @@ export default function Artist() {
       <Navigation />
       <SearchBar />
       <AlbumList />
+      <SongList />
+      <Footer />
     </div>
   );
 }

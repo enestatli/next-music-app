@@ -21,11 +21,12 @@ const AlbumList = (): JSX.Element => {
             <img
               className={styles.img}
               src={'https://musicdn.otsimo.com/15/79/1579281-600.jpg'}
-              alt="#"
+              alt="album-img"
             />
-            <h3>Song Name</h3>
+            <h3>Album Name</h3>
+            {/* <h3>Song Name</h3>
             <p>Artist Name</p>
-            <span>License</span>
+            <span>License</span> */}
           </a>
         ))}
       </div>

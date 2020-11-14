@@ -1,0 +1,17 @@
+.songListWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-width: 900px;
+}
+
+.songListWrapper div {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  margin: 0.5rem;
+  border: 1px solid red;
+  border-radius: 6px;
+}
