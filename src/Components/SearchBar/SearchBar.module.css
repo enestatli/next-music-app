@@ -1,7 +1,7 @@
 .form {
-  width: 94%;
+  width: 64%;
   position: absolute;
-  top: 12%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;

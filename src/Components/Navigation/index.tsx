@@ -3,15 +3,16 @@ import * as React from 'react';
 import Link from 'next/link';
 
 import styles from './Navigation.module.css';
-
+//TODO add home page recent album 10 pieces
 const Navigation = (): JSX.Element => (
-  <div className={styles.nav}>
-    <div className={styles.div}>
-      <Link href="/" passHref>
-        <a className={styles.a}>Home</a>
-      </Link>
-    </div>
-  </div>
+  <header className={styles.header}>
+    <Link href="/" passHref>
+      <a rel="noopener noreferrer">
+        Next Music Search{' '}
+        <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+      </a>
+    </Link>
+  </header>
 );
 
 export { Navigation };

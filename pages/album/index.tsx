@@ -1,15 +1,15 @@
 import Head from 'next/head';
+
 import {
-  AlbumList,
-  Navigation,
+  AlbumHeader,
   SearchBar,
   Footer,
+  Navigation,
   SongList,
 } from '../../src/Components';
-
 import styles from '../../styles/Home.module.css';
 
-export default function Artist() {
+export default function Album() {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,16 +18,8 @@ export default function Artist() {
       </Head>
       <Navigation />
       <SearchBar />
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Artist <a href="https://nextjs.org">Name</a>
-        </h1>
-
-        <p className={styles.description}>
-          <code className={styles.code}>9801428758912367</code>
-        </p>
-
-        <AlbumList />
+      <main className={styles.album}>
+        <AlbumHeader />
         <SongList />
       </main>
       <Footer />
