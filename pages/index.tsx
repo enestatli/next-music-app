@@ -15,6 +15,8 @@ export default function Home() {
       <main className={styles.main}>
         <SearchBar />
         {/* TODO home boolean to get only 10 album */}
+        {/* TODO Swipe package */}
+        {/* TODO mobile search width up to 95% */}
         <AlbumList home />
       </main>
       <Footer />
