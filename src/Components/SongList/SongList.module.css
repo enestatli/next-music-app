@@ -1,17 +1,71 @@
-.songListWrapper {
+.list {
   display: flex;
+  flex: 1;
   flex-direction: column;
   flex-wrap: nowrap;
   min-width: 900px;
+  margin-bottom: 32px;
+  /* background-color: red; */
+  /* width: 800px; */
 }
 
-.songListWrapper div {
+.card {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  /* justify-content: space-between; */
   padding: 0.5rem 0.75rem;
   text-align: center;
   margin: 0.5rem;
-  border: 1px solid red;
+  border: 1px solid #eaeaea;
   border-radius: 6px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card button {
+  background-image: url('/public/images/icons/icon-black-play.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-left: 0.5rem;
+  font-size: 10px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background-color: red;
+}
+
+.card button:hover,
+.card button:focus,
+.card button:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.card p {
+  margin: 0.8rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.card a {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .list {
+    min-width: 350px;
+    background-color: blue;
+  }
+  .card p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .card a {
+    margin-left: auto;
+    font-size: 0.45rem;
+    font-weight: bold;
+  }
 }

@@ -6,17 +6,27 @@ import styles from './SongList.module.css';
 
 const SongList = (): JSX.Element => {
   return (
-    <div className={styles.songListWrapper}>
-      <div>
+    <div className={styles.list}>
+      <div className={styles.card}>
         <button>Play Button</button>
         <p>Name of the song</p>
-        <span>CC</span>
+        <a>CC</a>
         <p>8:48</p>
       </div>
-      <div>
+      <div className={styles.card}>
         <button>Play Button</button>
         <p>Name of the song</p>
-        <span>CC</span>
+        <a href="#" target="_blank">
+          CC
+        </a>
+        <p>8:48</p>
+      </div>
+      <div className={styles.card}>
+        <button>Play Button</button>
+        <p>Name of the song</p>
+        <a href="#" target="_blank">
+          CC
+        </a>
         <p>8:48</p>
       </div>
     </div>
