@@ -18,7 +18,7 @@ export default function Home() {
         {/* TODO home boolean to get only 10 album */}
         {/* TODO Swipe package */}
         {/* TODO mobile search width up to 95% */}
-        <AlbumList home />
+        {/* <AlbumList /> */}
       </main>
       <Footer />
     </div>
