@@ -4,10 +4,11 @@ import { useRouter } from 'next/router';
 
 import styles from './AlbumList.module.css';
 import Link from 'next/link';
+import { Album, Music } from '../../models/app.models';
 
 interface ISearchProps {
-  songs: any;
-  albums: any;
+  songs?: Array<Music>;
+  albums?: Array<Album>;
 }
 
 const AlbumList = ({ albums }: ISearchProps): JSX.Element => {

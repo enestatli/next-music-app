@@ -12,12 +12,15 @@ import {
 } from '../../src/Components';
 
 import styles from '../../styles/Home.module.css';
+import { Album, Artist, Music } from '../../src/models/app.models';
 
-export default function Artist() {
+export default function () {
   const router = useRouter();
-  const [songs, setSongs] = React.useState([]);
-  const [albums, setAlbums] = React.useState([]);
-  const [artist, setArtist] = React.useState(null);
+  const [data, setData] = React.useState<{
+    songs: Array<Music>;
+    albums: Array<Album>;
+    artist: Artist;
+  }>();
 
   const { artistId } = router.query as { artistId: string };
 
@@ -34,15 +37,12 @@ export default function Artist() {
               },
             }
           );
-          setSongs(res.data.musics);
-          setAlbums(res.data.albums);
-          setArtist(res.data.artist);
+          setData(res.data);
         }
       } catch (err) {
         console.log('error while fetching artist', err);
       }
     })();
-    console.log(artist, 'ARTIST');
   }, [artistId]);
 
   return (
@@ -53,19 +53,23 @@ export default function Artist() {
       </Head>
       <Navigation />
       <SearchBar />
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          {'artist.name'} <a href="https://nextjs.org">Name</a>
-        </h1>
+      {data ? (
+        <main className={styles.main}>
+          <h1 className={styles.title}>
+            {data.artist?.name} <a href="https://nextjs.org">Name</a>
+          </h1>
 
-        <p className={styles.description}>
-          Digital signature of the artist
-          <code className={styles.code}>{'artist.id'}</code>
-        </p>
+          <p className={styles.description}>
+            Digital signature of the artist
+            <code className={styles.code}>{data.artist?.id}</code>
+          </p>
 
-        <AlbumList songs={songs} albums={albums} />
-        <SongList songs={songs} />
-      </main>
+          <AlbumList songs={data.songs} albums={data.albums} />
+          <SongList songs={data.songs} />
+        </main>
+      ) : (
+        <div>LOADING</div>
+      )}
       <Footer />
     </div>
   );

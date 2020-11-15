@@ -33,14 +33,16 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
       {songs !== null ? (
         songs?.map((song: any) => (
           <div key={song.id} className={styles.card}>
-            <button onClick={() => playTrack(song.url, isPlay)}> </button>
-            <img
-              className={styles.img}
-              src={song.album_images[2]}
-              alt={`${song.album_name}-img`}
-            />
+            <div className={styles.overlay}>
+              <button onClick={() => playTrack(song.url, isPlay)}> </button>
+              <img
+                className={styles.img}
+                src={song.album_images[2]}
+                alt={`${song.album_name}-img`}
+              />
+            </div>
             <Link href={`/album/${song.album_id}`}>
-              <h3>{song.album_name}</h3>
+              <h2>{song.album_name}</h2>
             </Link>
             <h6>{song.name}</h6>
             <Link href={`/artist/${song.artist_id}`}>

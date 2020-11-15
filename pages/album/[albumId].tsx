@@ -11,11 +11,16 @@ import {
   SongList,
 } from '../../src/Components';
 import styles from '../../styles/Home.module.css';
+import { Album, Music } from '../../src/models/app.models';
 
-export default function Album() {
+export default function () {
   const router = useRouter();
-  const [songs, setSongs] = React.useState([]);
-  const [album, setAlbum] = React.useState([]);
+  // const [songs, setSongs] = React.useState([]);
+  // const [album, setAlbum] = React.useState([]);
+  const [data, setData] = React.useState<{
+    songs: Array<Music>;
+    album: Array<Album>;
+  }>();
 
   const { albumId } = router.query as { albumId: string };
 
@@ -36,14 +41,12 @@ export default function Album() {
               },
             }
           );
-          setSongs(res.data.musics);
-          setAlbum(res.data.album);
+          setData(res.data);
         }
       } catch (err) {
         console.log('error while fetching album', err);
       }
     })();
-    console.log(album);
   }, [albumId]);
 
   return (
@@ -54,10 +57,12 @@ export default function Album() {
       </Head>
       <Navigation />
       <SearchBar />
-      <main className={styles.album}>
-        <AlbumHeader album={album} />
-        <SongList songs={songs} />
-      </main>
+      {data && (
+        <main className={styles.main}>
+          <AlbumHeader album={data.album} />
+          <SongList songs={data.musics} />
+        </main>
+      )}
       <Footer />
     </div>
   );

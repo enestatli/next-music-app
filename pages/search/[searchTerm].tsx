@@ -7,9 +7,10 @@ import { SearchBar } from '../../src/Components/SearchBar';
 
 import styles from '../../styles/Home.module.css';
 import Axios from 'axios';
+import { Music } from '../../src/models/app.models';
 
 export default function Search() {
-  const [songs, setSongs] = React.useState([]);
+  const [songs, setSongs] = React.useState<Array<Music>>([]);
   const router = useRouter();
 
   const { searchTerm } = router.query as { searchTerm: string };
