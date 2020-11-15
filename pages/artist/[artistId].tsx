@@ -22,22 +22,27 @@ export default function Artist() {
   const { artistId } = router.query as { artistId: string };
 
   React.useEffect(() => {
-    console.log(artistId, 'ARTISTID');
     (async () => {
-      const res = await axios.get(
-        `https://musicdb.jobs.otsimo.com/api/artist/${artistId}`,
-        {
-          headers: {
-            authorization:
-              '1.dXN4Y2VyQGV4YW1wbGUuY29t.gjNWY9Zln843popF2kXMRrzN',
-          },
+      try {
+        if (artistId) {
+          const res = await axios.get(
+            `https://musicdb.jobs.otsimo.com/api/artist/${artistId}`,
+            {
+              headers: {
+                authorization:
+                  '1.dXN4Y2VyQGV4YW1wbGUuY29t.gjNWY9Zln843popF2kXMRrzN',
+              },
+            }
+          );
+          setSongs(res.data.musics);
+          setAlbums(res.data.albums);
+          setArtist(res.data.artist);
         }
-      );
-      setSongs(res.data.musics);
-      setAlbums(res.data.albums);
-      setArtist(res.data.artist);
+      } catch (err) {
+        console.log('error while fetching artist', err);
+      }
     })();
-    console.log(albums[0]);
+    console.log(artist, 'ARTIST');
   }, [artistId]);
 
   return (

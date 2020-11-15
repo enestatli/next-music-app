@@ -30,26 +30,32 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
 
   return (
     <div className={styles.grid}>
-      {songs?.map((song: any) => (
-        <div key={song.id} className={styles.card}>
-          <button onClick={() => playTrack(song.url, isPlay)}> </button>
-          <img
-            className={styles.img}
-            src={song.album_images[2]}
-            alt={`${song.album_name}-img`}
-          />
-          <Link href={`/album/${song.album_id}`}>
-            <h3>{song.album_name}</h3>
-          </Link>
-          <h6>{song.name}</h6>
-          <Link href={`/artist/${song.artist_id}`}>
-            <h3>{song.artist_name}</h3>
-          </Link>
-          <a href={song.license__cuurl} target="_blank">
-            <span>License</span>
-          </a>
+      {songs !== null ? (
+        songs?.map((song: any) => (
+          <div key={song.id} className={styles.card}>
+            <button onClick={() => playTrack(song.url, isPlay)}> </button>
+            <img
+              className={styles.img}
+              src={song.album_images[2]}
+              alt={`${song.album_name}-img`}
+            />
+            <Link href={`/album/${song.album_id}`}>
+              <h3>{song.album_name}</h3>
+            </Link>
+            <h6>{song.name}</h6>
+            <Link href={`/artist/${song.artist_id}`}>
+              <h3>{song.artist_name}</h3>
+            </Link>
+            <a href={song.license_ccurl} target="_blank">
+              <span>License</span>
+            </a>
+          </div>
+        ))
+      ) : (
+        <div>
+          <p>No search result found.</p>
         </div>
-      ))}
+      )}
       <audio className={styles.audio} src={track} autoPlay controls />
     </div>
   );

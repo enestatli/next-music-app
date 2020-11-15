@@ -4,12 +4,9 @@ import { useRouter } from 'next/router';
 import { AlbumList, Navigation, SongCard } from '../../src/Components';
 import { Footer } from '../../src/Components/Footer';
 import { SearchBar } from '../../src/Components/SearchBar';
+
 import styles from '../../styles/Home.module.css';
 import Axios from 'axios';
-
-// export interface ISearchProps {
-//   search: boolean;
-// }
 
 export default function Search() {
   const [songs, setSongs] = React.useState([]);
@@ -51,16 +48,7 @@ export default function Search() {
         <SongCard search={true} songs={songs} />
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }

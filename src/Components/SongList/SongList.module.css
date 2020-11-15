@@ -66,7 +66,7 @@
 @media (max-width: 600px) {
   .list {
     min-width: 350px;
-    background-color: blue;
+    /* background-color: blue; */
   }
   .card p {
     font-size: 1rem;

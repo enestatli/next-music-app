@@ -14,12 +14,8 @@ const AlbumList = ({ albums }: ISearchProps): JSX.Element => {
   return (
     <div className={styles.grid}>
       {albums?.map((album: any) => (
-        <Link href={`/album/${album.id}`}>
-          <a
-            key={album.id}
-            href="https://nextjs.org/docs"
-            className={styles.card}
-          >
+        <Link href={`/album/${album.id}`} key={album.id}>
+          <a href="https://nextjs.org/docs" className={styles.card}>
             <img className={styles.img} src={album.images[2]} alt="album-img" />
             <h3>{album.name}</h3>
           </a>

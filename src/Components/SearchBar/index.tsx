@@ -9,7 +9,7 @@ const SearchBar = (): JSX.Element => {
   const router = useRouter();
 
   const handleSubmit = (e: any): void => {
-    const songName: string | undefined = text;
+    const songName: string | undefined = text.trim();
     console.log(songName);
     e.preventDefault();
     if (songName.length && songName.length >= 3) {
