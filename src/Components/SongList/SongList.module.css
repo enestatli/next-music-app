@@ -27,12 +27,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-color: transparent;
   margin-left: 0.5rem;
   font-size: 10px;
   width: 48px;
   height: 48px;
   border: none;
-  background-color: red;
 }
 
 .card button:hover,

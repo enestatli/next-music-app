@@ -4,21 +4,28 @@ import { useRouter } from 'next/router';
 
 import styles from './AlbumList.module.css';
 
-const AlbumList = ({ search }): JSX.Element => {
+interface ISearchProps {
+  search: boolean;
+  songs: any;
+}
+
+const AlbumList = ({ search, songs }: ISearchProps): JSX.Element => {
   return (
     <div className={styles.grid}>
-      {[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((i: any) => (
-        <a href="https://nextjs.org/docs" className={styles.card}>
+      {songs?.map((song: any) => (
+        <a key={song.id} href="https://nextjs.org/docs" className={styles.card}>
           <img
             className={styles.img}
-            src={'https://musicdn.otsimo.com/15/79/1579281-600.jpg'}
+            src={song.album_images[2]}
             alt="album-img"
           />
           {search ? (
             <>
-              <h3>Song Name</h3>
-              <p>Artist Name</p>
-              <span>License</span>
+              <h3>{song.name}</h3>
+              <p>{song.artist_name}</p>
+              <a href={song.license__cuurl} target="_blank">
+                License
+              </a>
             </>
           ) : (
             <h3>Album Name</h3>

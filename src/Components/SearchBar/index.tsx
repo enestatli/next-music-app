@@ -10,11 +10,13 @@ const SearchBar = (): JSX.Element => {
 
   const handleSubmit = (e: any): void => {
     const songName: string | undefined = text;
+    console.log(songName);
     e.preventDefault();
-    if (songName.length && songName.length > 3) {
+    if (songName.length && songName.length >= 3) {
       // Router.push(`/search/songs&q=${songName}`);
       router.push(`/search/${songName}`);
     }
+    setText('');
   };
 
   return (

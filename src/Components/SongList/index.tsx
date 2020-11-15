@@ -8,13 +8,13 @@ const SongList = (): JSX.Element => {
   return (
     <div className={styles.list}>
       <div className={styles.card}>
-        <button>Play Button</button>
+        <button> </button>
         <p>Name of the song</p>
         <a>CC</a>
         <p>8:48</p>
       </div>
       <div className={styles.card}>
-        <button>Play Button</button>
+        <button> </button>
         <p>Name of the song</p>
         <a href="#" target="_blank">
           CC
@@ -22,7 +22,7 @@ const SongList = (): JSX.Element => {
         <p>8:48</p>
       </div>
       <div className={styles.card}>
-        <button>Play Button</button>
+        <button> </button>
         <p>Name of the song</p>
         <a href="#" target="_blank">
           CC
