@@ -61,7 +61,8 @@
 
 .card {
   margin: 1rem;
-  flex-basis: 25%;
+  /* flex-basis: 25%; */
+  flex-basis: 45%;
   padding: 1rem;
   /* text-align: left; */
   text-align: center;
