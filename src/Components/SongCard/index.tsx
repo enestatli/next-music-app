@@ -15,6 +15,9 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
   const [track, setTrack] = React.useState('');
 
   const playTrack = (url: string, toggler: boolean) => {
+    if (url === track) {
+      setPlay(false);
+    }
     if (toggler) {
       // TODO stop playing
       // setPlay(false);
@@ -36,7 +39,7 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
             alt={`${song.album_name}-img`}
           />
           <Link href={`/album/${song.album_id}`}>
-            <h3>Album Name</h3>
+            <h3>{song.album_name}</h3>
           </Link>
           <h6>{song.name}</h6>
           <Link href={`/artist/${song.artist_id}`}>

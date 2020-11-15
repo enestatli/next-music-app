@@ -4,16 +4,19 @@ import { useRouter } from 'next/router';
 
 import styles from './AlbumHeader.module.css';
 
-const AlbumHeader = (): JSX.Element => {
+interface IAlbumHeaderProps {
+  album: any;
+}
+
+//TODO create interface classes
+
+const AlbumHeader = ({ album }: IAlbumHeaderProps): JSX.Element => {
   return (
     <div className={styles.card}>
-      <img
-        src="https://musicdn.otsimo.com/16/96/1696949-600.jpg"
-        alt="album-img"
-      />
+      <img src={'album?.images[2]'} alt={`${album.name}-img`} />
       <div>
-        <p>Album Name</p>
-        <p>Artist Name</p>
+        <p>{album.name}</p>
+        <p>{album.artist_id}</p>
       </div>
     </div>
   );

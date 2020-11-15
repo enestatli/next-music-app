@@ -54,6 +54,15 @@
   font-weight: bold;
 }
 
+.audio {
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
 @media (max-width: 600px) {
   .list {
     min-width: 350px;
