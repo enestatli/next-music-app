@@ -4,9 +4,10 @@ import { AlbumList, Footer, Navigation, SearchBar } from '../src/Components';
 
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
+import { Album } from '../src/models/app.models';
 
 export default function Home() {
-  const [albums, setAlbums] = React.useState([]);
+  const [albums, setAlbums] = React.useState<Array<Album>>([]);
 
   React.useEffect(() => {
     (async () => {

@@ -4,7 +4,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   margin-bottom: 32px;
-  width: 100%;
+  width: 90%;
 }
 
 .card {
@@ -65,9 +65,9 @@
   bottom: 0;
 }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
   .list {
     width: 100% !important;
     margin: 0 auto !important;
   }
-}
+} */

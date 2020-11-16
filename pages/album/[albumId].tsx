@@ -15,10 +15,8 @@ import { Album, Music } from '../../src/models/app.models';
 
 export default function () {
   const router = useRouter();
-  // const [songs, setSongs] = React.useState([]);
-  // const [album, setAlbum] = React.useState([]);
   const [data, setData] = React.useState<{
-    songs: Array<Music>;
+    musics: Array<Music>;
     album: Array<Album>;
   }>();
 
@@ -59,7 +57,11 @@ export default function () {
       <SearchBar />
       {data && (
         <main className={styles.main}>
-          <AlbumHeader album={data.album} />
+          <AlbumHeader
+            album={data.album}
+            name={data.musics[0].artist_name}
+            id={data.musics[0].artist_id}
+          />
           <SongList songs={data.musics} />
         </main>
       )}

@@ -14,7 +14,7 @@ const SongList = ({ songs }: ISongListProps): JSX.Element => {
   const [isPlay, setPlay] = React.useState<boolean>(true);
   const [track, setTrack] = React.useState<string>('');
   //TODO move playtrack to utils
-  const playTrack = (url: string, toggler: boolean) => {
+  const playTrack = (url: string, toggler: boolean): void => {
     if (url === track) {
       setPlay(false);
     }

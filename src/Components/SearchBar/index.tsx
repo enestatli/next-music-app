@@ -5,10 +5,12 @@ import { useRouter } from 'next/router';
 import styles from './SearchBar.module.css';
 
 const SearchBar = (): JSX.Element => {
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState<string>('');
   const router = useRouter();
 
-  const handleSubmit = (e: any): void => {
+  const handleSubmit = (
+    e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
+  ): void => {
     const songName: string | undefined = text.trim();
     console.log(songName);
     e.preventDefault();

@@ -1,19 +1,22 @@
-/* eslint-disable react/destructuring-assignment */
 import * as React from 'react';
-import Link from 'next/link';
 
 import styles from './Footer.module.css';
 
 const Footer = (): JSX.Element => (
   <footer className={styles.footer}>
-    {/* //TODO edit src alt */}
     <a
-      href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+      href="https://github.com/enestatli"
       target="_blank"
       rel="noopener noreferrer"
     >
-      Powered by{' '}
-      <img src="/vercel.svg" alt="Music Logo" className={styles.logo} />
+      Powered by Enes Tatli{' '}
+      <img
+        width="16px"
+        height="16px"
+        src="/images/icons/icon-black-copyright.svg"
+        alt="copyright-logo"
+        className={styles.logo}
+      />
     </a>
   </footer>
 );

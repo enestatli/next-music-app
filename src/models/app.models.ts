@@ -10,7 +10,6 @@ export interface Music {
   url: string;
   album_images: string[];
   added_at: string;
-  musics: [];
 }
 
 export interface Album {
@@ -19,7 +18,6 @@ export interface Album {
   artist_id: string;
   images: string[];
   added_at: string;
-  musics: [];
 }
 
 export interface Artist {

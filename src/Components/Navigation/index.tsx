@@ -8,8 +8,12 @@ const Navigation = (): JSX.Element => (
   <header className={styles.header}>
     <Link href="/" passHref>
       <a rel="noopener noreferrer">
-        Next Music Search{' '}
-        <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+        Next Music{' '}
+        <img
+          src="/images/icons/play-button-arrowhead.svg"
+          alt="Vercel Logo"
+          className={styles.logo}
+        />
       </a>
     </Link>
   </header>

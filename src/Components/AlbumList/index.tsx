@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { Album, Music } from '../../models/app.models';
 
 interface ISearchProps {
-  songs?: Array<Music>;
   albums?: Array<Album>;
 }
 
@@ -16,7 +15,7 @@ const AlbumList = ({ albums }: ISearchProps): JSX.Element => {
     <div className={styles.grid}>
       {albums?.map((album: any) => (
         <Link href={`/album/${album.id}`} key={album.id}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
+          <a className={styles.card}>
             <img className={styles.img} src={album.images[2]} alt="album-img" />
             <h3>{album.name}</h3>
           </a>

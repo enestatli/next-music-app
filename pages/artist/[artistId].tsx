@@ -17,7 +17,7 @@ import { Album, Artist, Music } from '../../src/models/app.models';
 export default function () {
   const router = useRouter();
   const [data, setData] = React.useState<{
-    songs: Array<Music>;
+    musics: Array<Music>;
     albums: Array<Album>;
     artist: Artist;
   }>();
@@ -55,20 +55,18 @@ export default function () {
       <SearchBar />
       {data ? (
         <main className={styles.main}>
-          <h1 className={styles.title}>
-            {data.artist?.name} <a href="https://nextjs.org">Name</a>
-          </h1>
+          <h1 className={styles.title}>{data.artist?.name}</h1>
 
           <p className={styles.description}>
             Digital signature of the artist
             <code className={styles.code}>{data.artist?.id}</code>
           </p>
-
-          <AlbumList songs={data.songs} albums={data.albums} />
-          <SongList songs={data.songs} />
+          {/* TODO albumlist fix css when only 1 album */}
+          <AlbumList albums={data.albums} />
+          <SongList songs={data.musics} />
         </main>
       ) : (
-        <div>LOADING</div>
+        <div>LOADING...</div>
       )}
       <Footer />
     </div>

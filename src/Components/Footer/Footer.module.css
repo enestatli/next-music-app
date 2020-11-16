@@ -9,14 +9,11 @@
 
 .footer img {
   margin-left: 0.5rem;
+  margin-top: 0.15rem;
 }
 
 .footer a {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.logo {
-  height: 1em;
 }

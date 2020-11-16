@@ -11,8 +11,8 @@ interface ISearchProps {
 }
 
 const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
-  const [isPlay, setPlay] = React.useState(true);
-  const [track, setTrack] = React.useState('');
+  const [isPlay, setPlay] = React.useState<boolean>(true);
+  const [track, setTrack] = React.useState<string>('');
 
   const playTrack = (url: string, toggler: boolean) => {
     if (url === track) {
