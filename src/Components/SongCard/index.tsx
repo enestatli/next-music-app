@@ -1,9 +1,9 @@
 /* eslint-disable react/destructuring-assignment */
 import * as React from 'react';
-import { useRouter } from 'next/router';
 
 import styles from './SongCard.module.css';
 import Link from 'next/link';
+import { playTrack } from '../../utils/playTrack';
 
 interface ISearchProps {
   search: boolean;
@@ -11,22 +11,8 @@ interface ISearchProps {
 }
 
 const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
-  const [isPlay, setPlay] = React.useState<boolean>(true);
+  const [isPlay, setPlay] = React.useState<boolean>(false);
   const [track, setTrack] = React.useState<string>('');
-
-  const playTrack = (url: string, toggler: boolean) => {
-    if (url === track) {
-      setPlay(false);
-    }
-    if (toggler) {
-      // TODO stop playing
-      // setPlay(false);
-      setTrack(url);
-    } else {
-      setPlay(true);
-      setTrack('');
-    }
-  };
 
   return (
     <div className={styles.grid}>
@@ -34,13 +20,25 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
         songs?.map((song: any) => (
           <div key={song.id} className={styles.card}>
             <div className={styles.overlay}>
-              <button onClick={() => playTrack(song.url, isPlay)}> </button>
+              <button
+                onClick={() =>
+                  playTrack(song.url, track, isPlay, setTrack, setPlay)
+                }
+              >
+                {' '}
+              </button>
               <img
                 className={styles.img}
                 src={song.album_images[2]}
                 alt={`${song.album_name}-img`}
               />
+              {/* <a className={styles.download} download={song.url}>
+                <img width="12px" src="/images/icons/down-arrow.svg" />
+              </a> */}
             </div>
+            <a className={styles.download} download={song.url}>
+              <img width="12px" src="/images/icons/down-arrow.svg" />
+            </a>
             <Link href={`/album/${song.album_id}`}>
               <h2>{song.album_name}</h2>
             </Link>

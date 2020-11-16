@@ -16,7 +16,6 @@ export default function Search() {
   const { searchTerm } = router.query as { searchTerm: string };
 
   React.useEffect(() => {
-    console.log(searchTerm);
     (async () => {
       try {
         if (searchTerm) {

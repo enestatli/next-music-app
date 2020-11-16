@@ -12,7 +12,6 @@ const SearchBar = (): JSX.Element => {
     e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
   ): void => {
     const songName: string | undefined = text.trim();
-    console.log(songName);
     e.preventDefault();
     if (songName.length && songName.length >= 3) {
       // Router.push(`/search/songs&q=${songName}`);
