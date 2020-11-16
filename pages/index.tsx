@@ -10,12 +10,11 @@ import {
   SearchBar,
   SongCard,
 } from '../src/Components';
-import { Album, Music } from '../src/models/app.models';
-import { getRecentAlbums, getRecentMusics } from '../src/utils/api';
+import { Album } from '../src/models/app.models';
+import { getRecentAlbums } from '../src/utils/api';
 
 export default function Home() {
   const [albums, setAlbums] = React.useState<Array<Album>>([]);
-  const [songs, setSongs] = React.useState<Array<Music>>([]);
 
   React.useEffect(() => {
     (async () => {
