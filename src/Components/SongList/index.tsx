@@ -44,8 +44,8 @@ const SongList = ({ songs }: ISongListProps): JSX.Element => {
             >
               <img
                 className={styles.licenseIcon}
-                width="16px"
-                height="16px"
+                width="12px"
+                height="12px"
                 src="/images/icons/icon-black-copyright.svg"
                 alt="license-logo"
               />
