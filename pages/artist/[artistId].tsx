@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Head from 'next/head';
-import axios from 'axios';
 import { useRouter } from 'next/router';
+
+import styles from '../../styles/Home.module.css';
 
 import {
   AlbumList,
@@ -11,8 +12,8 @@ import {
   SongList,
 } from '../../src/Components';
 
-import styles from '../../styles/Home.module.css';
 import { Album, Artist, Music } from '../../src/models/app.models';
+import { getArtistResults } from '../../src/utils/api';
 
 export default function () {
   const router = useRouter();
@@ -26,21 +27,9 @@ export default function () {
 
   React.useEffect(() => {
     (async () => {
-      try {
-        if (artistId) {
-          const res = await axios.get(
-            `https://musicdb.jobs.otsimo.com/api/artist/${artistId}`,
-            {
-              headers: {
-                authorization:
-                  '1.dXN4Y2VyQGV4YW1wbGUuY29t.gjNWY9Zln843popF2kXMRrzN',
-              },
-            }
-          );
-          setData(res.data);
-        }
-      } catch (err) {
-        console.log('error while fetching artist', err);
+      const data_ = await getArtistResults(artistId);
+      if (data_) {
+        setData(data_);
       }
     })();
   }, [artistId]);

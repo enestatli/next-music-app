@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { playTrack } from '../../utils/playTrack';
 
 interface ISearchProps {
-  search: boolean;
+  search?: boolean;
   songs: any;
 }
 

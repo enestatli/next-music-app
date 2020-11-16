@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { AlbumList, Navigation, SongCard } from '../../src/Components';
-import { Footer } from '../../src/Components/Footer';
-import { SearchBar } from '../../src/Components/SearchBar';
 
 import styles from '../../styles/Home.module.css';
-import Axios from 'axios';
+
+import { Navigation, SongCard } from '../../src/Components';
+import { Footer } from '../../src/Components/Footer';
+import { SearchBar } from '../../src/Components/SearchBar';
 import { Music } from '../../src/models/app.models';
+import { getSearchedResults } from '../../src/utils/api';
 
 export default function Search() {
   const [songs, setSongs] = React.useState<Array<Music>>([]);
@@ -17,21 +18,9 @@ export default function Search() {
 
   React.useEffect(() => {
     (async () => {
-      try {
-        if (searchTerm) {
-          const res = await Axios.get(
-            `https://musicdb.jobs.otsimo.com/api/music/search?q=${searchTerm}`,
-            {
-              headers: {
-                authorization:
-                  '1.dXN4Y2VyQGV4YW1wbGUuY29t.gjNWY9Zln843popF2kXMRrzN',
-              },
-            }
-          );
-          setSongs(res.data.musics);
-        }
-      } catch (err) {
-        console.log('error while fetching search result', err);
+      const data = await getSearchedResults(searchTerm);
+      if (data) {
+        setSongs(data);
       }
     })();
   }, [searchTerm]);
