@@ -32,13 +32,10 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
                 src={song.album_images[2]}
                 alt={`${song.album_name}-img`}
               />
-              {/* <a className={styles.download} download={song.url}>
-                <img width="12px" src="/images/icons/down-arrow.svg" />
-              </a> */}
+              <a className={styles.download} href={song.url} download>
+                <img width="16px" src="/images/icons/down-arrow.svg" />
+              </a>
             </div>
-            <a className={styles.download} download={song.url}>
-              <img width="12px" src="/images/icons/down-arrow.svg" />
-            </a>
             <Link href={`/album/${song.album_id}`}>
               <h2>{song.album_name}</h2>
             </Link>

@@ -56,22 +56,15 @@
   border-color: #def2f1;
 }
 
-/* .card:hover > .overlay {
-  transform: scale(1.08);
-  transition: transform 0.25s ease-in-out 0s;
-} */
-
-/* .card:hover > .overlay button {
-  opacity: 1;
-} */
-
 .card .overlay:hover {
   transform: scale(1.08);
   transition: transform 0.25s ease-in-out 0s;
 }
 
-.card .overlay button:hover {
+.card .overlay:hover > button,
+.card .overlay:hover > .download {
   opacity: 1;
+  transition: opacity 0.25s ease-in-out 0s;
 }
 
 .card h3 {
@@ -126,6 +119,15 @@
   position: fixed;
   left: 0;
   bottom: 0;
+}
+
+.download {
+  /* background-color: red; */
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  cursor: pointer;
+  opacity: 0;
 }
 
 @media (max-width: 600px) {
