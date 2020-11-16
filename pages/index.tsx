@@ -34,7 +34,11 @@ export default function Home() {
       <Navigation />
       <SearchBar />
       <main className={styles.main}>
-        <AlbumList albums={albums} />
+        {albums.length > 0 ? (
+          <AlbumList albums={albums} />
+        ) : (
+          <div className={styles.noresult}>LOADING...</div>
+        )}
       </main>
       <Footer />
     </div>

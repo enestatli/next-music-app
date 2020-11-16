@@ -41,7 +41,7 @@ export default function () {
       </Head>
       <Navigation />
       <SearchBar />
-      {data && (
+      {data ? (
         <main className={styles.main}>
           <AlbumHeader
             album={data.album}
@@ -50,6 +50,8 @@ export default function () {
           />
           <SongList songs={data.musics} />
         </main>
+      ) : (
+        <div className={styles.noresult}>LOADING...</div>
       )}
       <Footer />
     </div>

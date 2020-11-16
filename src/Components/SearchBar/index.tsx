@@ -17,7 +17,6 @@ const SearchBar = (): JSX.Element => {
       // Router.push(`/search/songs&q=${songName}`);
       router.push(`/search/${songName}`);
     }
-    setText('');
   };
 
   return (

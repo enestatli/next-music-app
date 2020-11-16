@@ -16,7 +16,7 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
 
   return (
     <div className={styles.grid}>
-      {songs !== null ? (
+      {songs ? (
         songs?.map((song: any) => (
           <div key={song.id} className={styles.card}>
             <div className={styles.overlay}>
@@ -57,7 +57,6 @@ const SongCard = ({ search, songs }: ISearchProps): JSX.Element => {
           <p>No search result found.</p>
         </div>
       )}
-      <audio className={styles.audio} src={track} autoPlay controls />
     </div>
   );
 };

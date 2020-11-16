@@ -21,6 +21,8 @@ export default function Search() {
       const data = await getSearchedResults(searchTerm);
       if (data) {
         setSongs(data);
+      } else {
+        setSongs([]);
       }
     })();
   }, [searchTerm]);
@@ -33,9 +35,13 @@ export default function Search() {
       </Head>
       <Navigation />
       <SearchBar />
-      <main className={styles.main}>
-        <SongCard search={true} songs={songs} />
-      </main>
+      {songs.length > 0 ? (
+        <main className={styles.main}>
+          <SongCard search={true} songs={songs} />
+        </main>
+      ) : (
+        <div className={styles.noresult}>No results found.</div>
+      )}
 
       <Footer />
     </div>

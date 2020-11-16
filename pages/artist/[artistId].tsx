@@ -55,7 +55,7 @@ export default function () {
           <SongList songs={data.musics} />
         </main>
       ) : (
-        <div>LOADING...</div>
+        <div className={styles.noresult}>LOADING...</div>
       )}
       <Footer />
     </div>

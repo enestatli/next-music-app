@@ -12,7 +12,6 @@ interface ISongListProps {
 const SongList = ({ songs }: ISongListProps): JSX.Element => {
   const [isPlay, setPlay] = React.useState<boolean>(true);
   const [track, setTrack] = React.useState<string>('');
-  //TODO move playtrack to utils
 
   return (
     <div className={styles.list}>
@@ -50,6 +49,9 @@ const SongList = ({ songs }: ISongListProps): JSX.Element => {
                 : song.duration % 60
             }`}</p>
           </div>
+          <a className={styles.download} href={song.url} download={song.name}>
+            <img width="16px" src="/images/icons/down-arrow.svg" />
+          </a>
         </div>
       ))}
       <audio className={styles.audio} src={track} autoPlay controls />
