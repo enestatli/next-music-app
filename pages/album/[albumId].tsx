@@ -12,13 +12,13 @@ import {
 } from '../../src/Components';
 import { Album, Music } from '../../src/models/app.models';
 import { getAlbumResults } from '../../src/utils/api';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 export default function AlbumPage({ data }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Album Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation />
@@ -40,23 +40,14 @@ export default function AlbumPage({ data }) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [{ params: { albumId: '' } }],
-    //false means other routes should 404
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+}: any) => {
   const data: {
     musics: Array<Music>;
     albums: Array<Album>;
-  } = await getAlbumResults(params.albumId);
+  } = await getAlbumResults(query.albumId);
   return {
     props: { data },
-    // Re-generate the post at most once per second
-    // if a request comes in
-    // revalidate: 1,
   };
 };

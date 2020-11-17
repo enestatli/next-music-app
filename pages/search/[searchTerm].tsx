@@ -8,13 +8,13 @@ import { Footer } from '../../src/Components/Footer';
 import { SearchBar } from '../../src/Components/SearchBar';
 import { Music } from '../../src/models/app.models';
 import { getSearchedResults } from '../../src/utils/api';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 export default function Search({ songs }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Search Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation />
@@ -32,20 +32,11 @@ export default function Search({ songs }) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  return {
-    paths: [{ params: { searchTerm: '' } }],
-    //false means other routes should 404
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
-  const songs: Music[] = await getSearchedResults(params.searchTerm);
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+}: any) => {
+  const songs: Music[] = await getSearchedResults(query.searchTerm);
   return {
     props: { songs },
-    // Re-generate the post at most once per second
-    // if a request comes in
-    // revalidate: 1,
   };
 };

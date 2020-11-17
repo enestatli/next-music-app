@@ -13,7 +13,7 @@ import {
 
 import { Album, Artist, Music } from '../../src/models/app.models';
 import { getArtistResults } from '../../src/utils/api';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 export default function ArtistPage({ data }) {
   return (
@@ -44,24 +44,15 @@ export default function ArtistPage({ data }) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [{ params: { artistId: '' } }],
-    //false means other routes should 404
-    fallback: true,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+}: any) => {
   const data: {
     musics: Array<Music>;
     albums: Array<Album>;
     artist: Artist;
-  } = await getArtistResults(params.artistId);
+  } = await getArtistResults(query.artistId);
   return {
     props: { data },
-    // Re-generate the post at most once per second
-    // if a request comes in
-    // revalidate: 1,
   };
 };

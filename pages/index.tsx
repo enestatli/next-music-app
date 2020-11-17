@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 
 import styles from '../styles/Home.module.css';
 
@@ -29,11 +29,9 @@ export default function Home({ albums }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const albums: Album[] = await getRecentAlbums();
   return {
-    props: {
-      albums,
-    },
+    props: { albums }, // will be passed to the page component as props
   };
 };
