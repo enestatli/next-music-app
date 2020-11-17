@@ -19,7 +19,7 @@ export default function ArtistPage({ data }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Next Music Search App</title>
+        <title>{data.artist.name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navigation />
