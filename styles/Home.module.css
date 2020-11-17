@@ -66,19 +66,3 @@
     margin: 0 auto !important;
   }
 }
-
-/* Light mode */
-@media (prefers-color-scheme: light) {
-  .container {
-    background: white;
-    color: black;
-  }
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  .container {
-    background: rgb(39, 39, 39);
-    color: rgb(194, 194, 194);
-  }
-}
