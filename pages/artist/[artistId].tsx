@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import styles from '../../styles/Home.module.css';
 
@@ -14,26 +13,9 @@ import {
 
 import { Album, Artist, Music } from '../../src/models/app.models';
 import { getArtistResults } from '../../src/utils/api';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function () {
-  const router = useRouter();
-  const [data, setData] = React.useState<{
-    musics: Array<Music>;
-    albums: Array<Album>;
-    artist: Artist;
-  }>();
-
-  const { artistId } = router.query as { artistId: string };
-
-  React.useEffect(() => {
-    (async () => {
-      const data_ = await getArtistResults(artistId);
-      if (data_) {
-        setData(data_);
-      }
-    })();
-  }, [artistId]);
-
+export default function ArtistPage({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -50,7 +32,7 @@ export default function () {
             Digital signature of the artist
             <code className={styles.code}>{data.artist?.id}</code>
           </p>
-          {/* TODO albumlist fix css when only 1 album */}
+
           <AlbumList albums={data.albums} />
           <SongList songs={data.musics} />
         </main>
@@ -61,3 +43,25 @@ export default function () {
     </div>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { artistId: '' } }],
+    //false means other routes should 404
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+  const data: {
+    musics: Array<Music>;
+    albums: Array<Album>;
+    artist: Artist;
+  } = await getArtistResults(params.artistId);
+  return {
+    props: { data },
+    // Re-generate the post at most once per second
+    // if a request comes in
+    // revalidate: 1,
+  };
+};

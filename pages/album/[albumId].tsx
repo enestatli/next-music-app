@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import * as React from 'react';
 
 import styles from '../../styles/Home.module.css';
@@ -13,26 +12,9 @@ import {
 } from '../../src/Components';
 import { Album, Music } from '../../src/models/app.models';
 import { getAlbumResults } from '../../src/utils/api';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function () {
-  const router = useRouter();
-  const [data, setData] = React.useState<{
-    musics: Array<Music>;
-    album: Array<Album>;
-  }>();
-
-  const { albumId } = router.query as { albumId: string };
-
-  React.useEffect(() => {
-    console.log(albumId);
-    (async () => {
-      const data_ = await getAlbumResults(albumId);
-      if (data_) {
-        setData(data_);
-      }
-    })();
-  }, [albumId]);
-
+export default function AlbumPage({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -57,3 +39,24 @@ export default function () {
     </div>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [{ params: { albumId: '' } }],
+    //false means other routes should 404
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+  const data: {
+    musics: Array<Music>;
+    albums: Array<Album>;
+  } = await getAlbumResults(params.albumId);
+  return {
+    props: { data },
+    // Re-generate the post at most once per second
+    // if a request comes in
+    // revalidate: 1,
+  };
+};

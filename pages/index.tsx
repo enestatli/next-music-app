@@ -1,30 +1,14 @@
 import * as React from 'react';
 import Head from 'next/head';
+import { GetStaticProps } from 'next';
 
 import styles from '../styles/Home.module.css';
 
-import {
-  AlbumList,
-  Footer,
-  Navigation,
-  SearchBar,
-  SongCard,
-} from '../src/Components';
+import { AlbumList, Footer, Navigation, SearchBar } from '../src/Components';
 import { Album } from '../src/models/app.models';
 import { getRecentAlbums } from '../src/utils/api';
 
-export default function Home() {
-  const [albums, setAlbums] = React.useState<Array<Album>>([]);
-
-  React.useEffect(() => {
-    (async () => {
-      const data = await getRecentAlbums();
-      if (data) {
-        setAlbums(data);
-      }
-    })();
-  }, []);
-
+export default function Home({ albums }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -44,3 +28,12 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const albums: Album[] = await getRecentAlbums();
+  return {
+    props: {
+      albums,
+    },
+  };
+};

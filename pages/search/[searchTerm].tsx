@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import styles from '../../styles/Home.module.css';
 
@@ -9,24 +8,9 @@ import { Footer } from '../../src/Components/Footer';
 import { SearchBar } from '../../src/Components/SearchBar';
 import { Music } from '../../src/models/app.models';
 import { getSearchedResults } from '../../src/utils/api';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
-export default function Search() {
-  const [songs, setSongs] = React.useState<Array<Music>>([]);
-  const router = useRouter();
-
-  const { searchTerm } = router.query as { searchTerm: string };
-
-  React.useEffect(() => {
-    (async () => {
-      const data = await getSearchedResults(searchTerm);
-      if (data) {
-        setSongs(data);
-      } else {
-        setSongs([]);
-      }
-    })();
-  }, [searchTerm]);
-
+export default function Search({ songs }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -35,7 +19,7 @@ export default function Search() {
       </Head>
       <Navigation />
       <SearchBar />
-      {songs.length > 0 ? (
+      {songs?.length > 0 ? (
         <main className={styles.main}>
           <SongCard search={true} songs={songs} />
         </main>
@@ -47,3 +31,21 @@ export default function Search() {
     </div>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async (context) => {
+  return {
+    paths: [{ params: { searchTerm: '' } }],
+    //false means other routes should 404
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+  const songs: Music[] = await getSearchedResults(params.searchTerm);
+  return {
+    props: { songs },
+    // Re-generate the post at most once per second
+    // if a request comes in
+    // revalidate: 1,
+  };
+};
